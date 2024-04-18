@@ -19,6 +19,8 @@ import Layout from "./components/Layout"
 import HostLayout from "./components/HostLayout"
 import AuthRequired from "./components/AuthRequired"
 import AuthRequiredUser from "./components/AuthRequiredUser"
+import VanRentForm from "./pages/Vans/VanRentForm"
+import RentVanFormLayout from"./components/RentVanFormLayout"
 
 
 
@@ -34,7 +36,10 @@ function App() {
           <Route path="about" element={<About />} />
           <Route element={<AuthRequiredUser />}>
              <Route path="vans" element={<Vans />} />
-              <Route path="vans/:id" element={<VanDetail />} />
+            <Route path="vans/:id" element={<RentVanFormLayout />}>
+               <Route index element={<VanDetail />}/>
+                <Route path="rent" element={<VanRentForm />} />
+              </Route>
           </Route>    
           <Route
             path="login"

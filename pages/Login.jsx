@@ -10,7 +10,7 @@ export default function Login() {
     const [error, setError] = React.useState(null)
     const location = useLocation()
     const navigate = useNavigate()
-
+    const checkLogin =  localStorage.getItem("loggedIn");  
     const emailUser = loginFormData.email
     const passwordUser = loginFormData.password
     const googleAuth = auth
@@ -106,6 +106,8 @@ export default function Login() {
     }
 
     return (
+
+        checkLogin ? <p>You're already logged in...</p> :
         <div className="login-container">
             {
                 location.state?.message &&
@@ -139,9 +141,11 @@ export default function Login() {
                 onClick={handleSubmit}>
                     Create Account
                 </button>
+
                 <button onClick={handleLogin}>
                     Log in
                 </button>
+                
                 <button onClick={googleSignIn} className="google-btn">
                     <img className="google-image" src={google} />
                     Sign in with Google

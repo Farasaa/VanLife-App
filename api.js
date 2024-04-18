@@ -1,7 +1,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, getDoc, query, where, documentId, doc } from "firebase/firestore/lite"
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAb28jzkIPcW5DcdEokMtDXeH8NXwwJLfo",
@@ -115,22 +115,22 @@ export async function userLogin(userEmail, userPassword){
 export async function signInWithGoogle(){
 
 
- try {
-    const result = await signInWithPopup(auth, provider);
+    try {
+        const result = await signInWithPopup(auth, provider);
+
+        // const userCred = await getRedirectResult(auth);
+        
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
     
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-    // The signed-in user info.
-    const user = result.user;
-    // IdP data available using getAdditionalUserInfo(result)
-    // ...
-  } catch (error) {
-    throw {
-        message: error.message,
-        code: error.code
+        const user = result.user;
+       
+    } catch (error) {
+        throw {
+            message: error.message,
+            code: error.code
+        }
     }
-  }
 
 }
 

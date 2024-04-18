@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, useParams, useLocation } from "react-router-dom"
+import { Link, useParams, useLocation, useNavigate } from "react-router-dom"
 import { getVan } from "../../api"
 
 export default function VanDetail() {
@@ -8,6 +8,9 @@ export default function VanDetail() {
     const [error, setError] = React.useState(null)
     const { id } = useParams()
     const location = useLocation()
+    
+
+
 
     React.useEffect(() => {
         async function loadVans() {
@@ -52,7 +55,9 @@ export default function VanDetail() {
                     <h2>{van.name}</h2>
                     <p className="van-price"><span>${van.price}</span>/day</p>
                     <p>{van.description}</p>
-                    <button className="link-button">Rent this van</button>
+                    <Link 
+                    state={{vanName: van.name, type: van.type, price: van.price }}
+                    to="rent" className="link-button">Rent this van</Link>
                 </div>
             )}
         </div>

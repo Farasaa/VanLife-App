@@ -9,6 +9,10 @@ export default function Header() {
     const location = useLocation()
     const navigate = useNavigate()
     const [error, setError] = React.useState(null)
+
+    
+
+   
     
    
 
@@ -23,7 +27,6 @@ export default function Header() {
 
     function fakeLogOut() {
         userLogout().then(() => {
-            console.log("LogOut Success")
             localStorage.removeItem("loggedIn");
             navigate(from, { replace: true });
         }).catch((error) => {
